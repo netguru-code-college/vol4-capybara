@@ -1,0 +1,55 @@
+<%= link_to "All products", products_path %>
+<%= link_to "Add new product", new_product_path %>
+
+<h1>List of Products</h1>
+
+
+<%= form_with(method: :get, local: true) do |f| %>
+
+  <% @products.each do |product| %>
+    <div>
+      <a href="<%= product_path(product) %>">
+        <b><h3><%= product.name %></h3></b>
+        <p>Expiration date: <%= product.exp_date %></p>
+      </a>
+
+      <%= f.check_box(:selected_products,
+                      {multiple: true, checked: @selected_product_names.include?(product.name)},
+                      product.name,
+                      nil ) %>
+    </div>
+  <% end %>
+
+
+  <%= f.submit "Send" %>
+<% end %>
+
+
+
+
+<!--display selected parameters-->
+</br></br>
+<%= @all_parameters %>
+</br></br>
+
+
+
+
+
+<!--display api response-->
+
+<% if !@api_response_hash.empty? %>
+
+  <h2>Recommended Recipes</h2>
+
+  <% @api_response_hash['results'].each do |hash| %>
+
+    <% hash.each do |key, val| %>
+      <b> <%= key %> </b>
+      <%= val %>
+      </br>
+    <% end %>
+    </br>
+
+  <% end %>
+<% end %>

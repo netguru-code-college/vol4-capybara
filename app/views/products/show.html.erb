@@ -1,0 +1,15 @@
+<h1>Product details</h1>
+
+
+<h3><%= @product.name %></h3>
+<p>Expiration date: <%= @product.exp_date %></p>
+
+<i>Last updated: <%= @product.updated_at %></i>
+
+
+<div>
+  <%= link_to "Return", products_path %>
+  <%= link_to "Edit", edit_product_path(@product) %>
+  <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: 'Are you sure?'} %>
+</div>
+

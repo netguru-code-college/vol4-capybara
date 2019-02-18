@@ -29,6 +29,13 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 1.0'
 
+# debugging
+gem 'pry', '~> 0.12.2'
+
+# call external API
+gem 'rest-client'
+gem 'json'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
