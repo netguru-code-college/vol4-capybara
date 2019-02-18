@@ -1,1 +1,20 @@
-.travis.yml
+language: ruby
+rvm:
+- 2.6.1
+before_install:
+- gem install bundler
+before_script:
+- cp config/database.yml.ci config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+script:
+- bundle exec rails db:migrate RAILS_ENV=test
+- bundle exec rspec
+env:
+  secure: UTOMAWN5gU3EoARdoqWlGMgsHvjgSuocuBDLDPHLSXpQV27uz+AITxdH+DN259zFwoMOeOqy9LLh6nkNuFs+dKAJzfo9cfoA82HnFxf/IN+nRaGZnESOHWhqW0o0vhFQcGEYJzOp6YN4yEERajZfv5q/5/LpSM6+WHtRY7jJWHUAHVQB9Aq0qJHOC902mCCqU2yC5uSrslgfdZ0WQf+zq5h40AmhU4jTLrCbWTWZF1DvNq2j+Ycnyc07R3FULBIRF7BoW6OtmwG/n9MNwrq0IFkA6hzXit4TNH0uC9uCYpiir8QhoYtZ6hJAVicqJZ9zDrAOucTUpDrtrUXpLlxT9U+5GcLjbYN3Gi0E3UqlvfzvVtS+jr9nZ9CweIZb8HLre8icXKLob4r7OxHgkgb/r+vjwrEgMKoNA5aie7Xz+6K9OyDIlbCOzdsgdzH6IUPoK9R2rNqceKVCwB0hcHPRTjBla0UDgrf50wedBwsBjiIr4O8R4C5UE/NtwbQwZGUjhGry5SjD4/2/hxIdDQxUDYrVVMvcFvf4Ol0orCsef8ORw9kLMQNn74lCdqUUZ8Re/KIPr7NyNwyiYtrkvRMfD3n+5BzKeeV5bpvBDAdwZU7TndveRTKag3WETii97IHgOylpjOVw1cfibRC0DNb6iLUhZTIv4m5+1hgUZTuD1eU=
+deploy:
+  provider: heroku
+  api_key:
+    secure: P3kvVpjZ9Z0My2cRjYdSJzsoyhGSBHiFveVfMjk5lQLtPxAnqExYz+uGSpQlQLXKhINLApgFfN8exPfJ7V6i/6L6FpULDLPMzPQQNRJtVw+EMZn40H8gUgFddwMf4SHt35qEqFxqdkCU44wLzu66NZarKN8p3TS7EMr97x+0WPFzssEpAeBkI9FeiHXd/nh+xjTCt0dosAP7kAnyzVLoNJlSFXjLyqUfO8gy988BVnhhLeRk4LO/1xNLI0gUQWMcU3PXagGCAMOzLag1K1KYXrrnv7BmVoaGwsluaseZkB5L0oFA/8dGJjxxMtD61Mk6A8tqTdHvEzvdcgAGc8960uFN6DdV1imuJJqIz4P+upHOlf0zld3a8vgPo5S78HAkVW25J9GDHrksjCHcGYW+WxCOfnh4ZFkfbvxGzb0gKLyFyzugwsjP1vUkBWf2tN5BoUXrwZ/hh1ws8nKtya4JvorQIAzJST2ESiz/t+EmKIqMhJT9096OHkIMajPLC+NHYYbQ/z26EWmpaXN1vgTClgWyv92uvnZLAZ/p1nAjbdKv/rBcj1BR9Eb/yMcz0bIcscJXtbk6O9LpX6oZDgJDq5LAPgFiSs/MlKsxVzmATbtk7AAIMGoTKGueu75XIrpVHNvwHJHzS7GbbkBS7QCS54GHytcS1tWZgyyf7j746jI=
+  app: zero-waste-capybara
+  on:
+    repo: netguru-code-college/vol4-capybara
