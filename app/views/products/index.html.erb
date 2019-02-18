@@ -26,13 +26,10 @@
 
 
 
-
 <!--display selected parameters-->
 </br></br>
 <%= @all_parameters %>
 </br></br>
-
-
 
 
 
@@ -44,11 +41,24 @@
 
   <% @api_response_hash['results'].each do |hash| %>
 
-    <% hash.each do |key, val| %>
-      <b> <%= key %> </b>
-      <%= val %>
-      </br>
-    <% end %>
+    <%# hash['title'] %>
+    <%# hash['href'] %>
+    <%# hash['ingredients'] %>
+    <%# hash['thumbnail'] %>
+
+    <img src="<%= hash['thumbnail'] %>" height="100" width="100">
+
+    <b>
+      <%= hash['title'] %>
+    </b>
+
+    <a href="<%= hash['href'] %>">
+      LINK
+    </a>
+
+    </br>
+    <p>All ingredients: <%= hash['ingredients'] %> </p>
+
     </br>
 
   <% end %>
