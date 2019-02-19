@@ -1,0 +1,15 @@
+</br></br>
+<%= link_to "Return", ingredient_path(@ingredient) %>
+</br></br>
+
+<h1>Edit ingredient</h1>
+
+<%= form_with(model: @ingredient, local: true) do |f| %>
+
+  <%= f.text_field :name %>
+
+  <%= f.submit "Save" %>
+
+<% end %>
+
+</br>

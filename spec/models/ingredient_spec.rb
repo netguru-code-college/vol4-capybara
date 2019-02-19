@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "products/index.html.erb.erb", type: :view do
+RSpec.describe Ingredient, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

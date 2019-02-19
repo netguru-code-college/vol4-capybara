@@ -1,24 +1,45 @@
-<%= link_to "All products", products_path %>
+<% @ingredients.each do |ingredient| %>
 
-<% if current_user && current_user.admin %>
-  <%= link_to "Add new product", new_product_path %>
+  <a href="<%= ingredient_path(ingredient) %>">
+      <%= ingredient.name %>
+  </a>
+
+<% end %>
+
+<% @products.each do |ingredient| %>
+
+  <a href="<%= ingredient_path(ingredient) %>">
+    <%= ingredient.name %>
+  </a>
+
 <% end %>
 
 
-<h1>List of Products</h1>
+
+
+#############################################3
+
+<%= link_to "All ingredients", ingredients_path %>
+
+<% if current_user && current_user.admin %>
+  <%= link_to "Add new ingredient", new_ingredient_path %>
+<% end %>
+
+
+<h1>List of Ingredients</h1>
 
 
 <%= form_with(method: :get, local: true) do |f| %>
 
-  <% @products.each do |product| %>
+  <% @ingredients.each do |ingredient| %>
     <div>
-      <a href="<%= product_path(product) %>">
-        <b><h3><%= product.name %></h3></b>
+      <a href="<%= ingredient_path(ingredient) %>">
+        <b><h3><%= ingredient.name %></h3></b>
       </a>
 
-      <%= f.check_box(:selected_products,
-                      {multiple: true, checked: @selected_product_names.include?(product.name)},
-                      product.name,
+      <%= f.check_box(:selected_ingredients,
+                      {multiple: true, checked: @selected_ingredient_names.include?(ingredient.name)},
+                      ingredient.name,
                       nil ) %>
     </div>
   <% end %>
@@ -66,3 +87,5 @@
 
   <% end %>
 <% end %>
+
+

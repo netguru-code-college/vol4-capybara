@@ -1,2 +1,0 @@
-class DietCategory < ApplicationRecord
-end
