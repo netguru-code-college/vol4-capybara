@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
 
+
 before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -12,5 +13,9 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password,
       :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar) }
   end
+
+
+    include Pundit
+    protect_from_forgery
 
 end
