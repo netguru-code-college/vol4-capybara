@@ -1,0 +1,20 @@
+</br></br>
+<%= link_to "Return", ingredient_path(@ingredient) %>
+</br></br>
+
+<h1>Edit ingredient</h1>
+
+<%= form_with(model: @ingredient, local: true) do |f| %>
+
+  <%= f.text_field :product_id %>
+  <%= f.text_field :quantity %>
+  <%= f.text_field :unit %>
+  <%= f.date_field :exp_date %>
+
+  <%= f.submit "Save" %>
+
+<% end %>
+
+
+
+</br>

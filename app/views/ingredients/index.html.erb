@@ -1,0 +1,33 @@
+
+</br>
+
+<%= link_to "My ingredients", ingredients_path %>
+
+<% if current_user && current_user.admin %>
+  <%= link_to "Add new ingredient", new_ingredient_path %>
+<% end %>
+
+</br></br>
+
+<% @ingredients.each do |ingredient| %>
+
+  <a href="<%= ingredient_path(ingredient) %>">
+      <%= ingredient.id %>
+      <%= ingredient.product_id %>
+      <%= ingredient.product.name %>
+      <%= ingredient.exp_date %>
+      <%= ingredient.quantity %>
+      <%= ingredient.unit %>
+
+    </br>
+
+  </a>
+
+<% end %>
+
+
+
+
+
+
+

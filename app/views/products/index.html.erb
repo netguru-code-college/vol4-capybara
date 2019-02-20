@@ -14,7 +14,6 @@
     <div>
       <a href="<%= product_path(product) %>">
         <b><h3><%= product.name %></h3></b>
-        <p>Expiration date: <%= product.exp_date %></p>
       </a>
 
       <%= f.check_box(:selected_products,

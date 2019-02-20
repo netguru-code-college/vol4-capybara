@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
 
-  #TODO add model validation
+  has_many :ingredients
 
 end
