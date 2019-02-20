@@ -8,7 +8,7 @@
 <%= form_with(model: @ingredient, local: true) do |f| %>
 
   <%= f.label :product %>
-  <%= f.select("product_id", Product.all.collect {|p| [ p.name, p.id ] }) %>
+  <%= f.select(:product_id, Product.all.collect {|p| [ p.name, p.id ] }) %>
 
   <%= f.label :quantity %>
   <%= f.number_field :quantity, min: 1 %>
