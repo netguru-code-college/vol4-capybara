@@ -34,6 +34,11 @@ gem 'carrierwave', '~> 1.0'
 # debugging
 gem 'pry', '~> 0.12.2'
 
+# Use bootstrap
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
+gem "bootstrap_form", ">= 4.1.0"
+
 # call external API
 gem 'rest-client'
 gem 'json'
