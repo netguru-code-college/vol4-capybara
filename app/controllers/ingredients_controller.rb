@@ -29,12 +29,24 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-
-    if @ingredient.save
+    @ingredient.user = current_user
+    if params[:ingredient][:product_id].present?
+      @product = Product.find(params[:ingredient][:product_id])
+      @ingredient.product = @product
+      @ingredient.save!
       redirect_to ingredients_path
     else
       render 'new'
     end
+
+
+   # @ingredient = Ingredient.new(ingredient_params)
+
+    #if @ingredient.save
+     # redirect_to ingredients_path
+    #else
+     # render 'new'
+    #end
   end
 
   def update
