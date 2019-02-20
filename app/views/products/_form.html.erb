@@ -1,8 +1,8 @@
-<%= form_with(model: @product, local: true) do |f| %>
+<%= bootstrap_form_with(model: @product, local: true) do |f| %>
 
   <%= f.text_field :name %>
 
-  <%= f.submit "Save" %>
+  <%= f.primary "Save" %>
 
 <% end %>
 
