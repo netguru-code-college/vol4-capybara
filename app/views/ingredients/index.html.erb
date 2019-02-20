@@ -10,28 +10,26 @@
 </br></br>
 
 
-<%= bootstrap_form_with(method: :get, local: true) do |f| %>
+<%= form_with(method: :get, local: true) do |f| %>
 
   <% @ingredients.each do |ingredient| %>
     <div>
+      
+      <%= f.check_box(:selected_ingredients,
+                      {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
+                      ingredient.product.name,
+                      nil ) %> 
       <%= ingredient.product.name %>
       <%= ingredient.exp_date %>
       <%= ingredient.quantity %>
       <%= ingredient.unit %>
 
-
-      <%= f.check_box(:selected_ingredients,
-                      {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
-                      ingredient.product.name,
-                      nil ) %>
-      
-      
     </div>
   <% end %>
 
-      <%= f.select :food_cat, Recipe.food_cats.map { |key, value| [key.humanize, key] } %>
-      <%= f.select :diet_cat, Recipe.diet_cats.map { |key, value| [key.humanize, key] } %>
-  <%= f.primary "Send" %>
+      <%= f.select :Food_category, Recipe.food_cats.map { |key, value| [key.humanize, key] } %>
+      <%= f.select :Diet_category, Recipe.diet_cats.map { |key, value| [key.humanize, key] } %>
+  <%= f.submit "Send" %>
 <% end %>
 
 
