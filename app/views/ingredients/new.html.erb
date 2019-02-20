@@ -7,9 +7,16 @@
 <div class= 'form-group form form'>
 <%= form_with(model: @ingredient, local: true) do |f| %>
 
-  <%= f.text_field :product_id %>
-  <%= f.text_field :quantity %>
-  <%= f.text_field :unit %>
+  <%= f.label :product %>
+  <%= f.select("product_id", Product.all.collect {|p| [ p.name, p.id ] }) %>
+
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, min: 1 %>
+
+  <%= f.label :unit %>
+  <%= f.select :unit, Ingredient.units.map { |key, value| [key.humanize, key] } %>
+
+  <%= f.label :expiration %>
   <%= f.date_field :exp_date %>
 
   <%= f.submit "Save", class:'btn btn-primary'%><%= link_to "Return", ingredients_path, class:'btn btn-outline-danger' %>
