@@ -9,21 +9,76 @@
 
 </br></br>
 
-<% @ingredients.each do |ingredient| %>
 
-  <a href="<%= ingredient_path(ingredient) %>">
-      <%= ingredient.id %>
-      <%= ingredient.product_id %>
+<%= form_with(method: :get, local: true) do |f| %>
+
+  <% @ingredients.each do |ingredient| %>
+    <div>
       <%= ingredient.product.name %>
       <%= ingredient.exp_date %>
       <%= ingredient.quantity %>
       <%= ingredient.unit %>
 
+
+      <%= f.check_box(:selected_ingredients,
+                      {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
+                      ingredient.product.name,
+                      nil ) %>
+    </div>
+  <% end %>
+
+
+  <%= f.submit "Send" %>
+<% end %>
+
+
+
+
+
+</br></br>
+<%= @all_parameters %>
+</br></br>
+
+
+
+<!--display api response-->
+
+<% if !@api_response_hash.empty? %>
+
+  <h2>Recommended Recipes</h2>
+
+  <% @api_response_hash['results'].each do |hash| %>
+
+    <%# hash['title'] %>
+    <%# hash['href'] %>
+    <%# hash['ingredients'] %>
+    <%# hash['thumbnail'] %>
+
+    <img src="<%= hash['thumbnail'] %>" height="100" width="100">
+
+    <b>
+      <%= hash['title'] %>
+    </b>
+
+    <a href="<%= hash['href'] %>">
+      LINK
+    </a>
+
+    </br>
+    <p>All ingredients: <%= hash['ingredients'] %> </p>
+
     </br>
 
-  </a>
-
+  <% end %>
 <% end %>
+
+    </div>
+  </div>
+
+
+
+
+
 
 
 
