@@ -1,9 +1,10 @@
 </br></br>
-<%= link_to "Return", ingredients_path %>
+
 </br></br>
 
-<h1>Add new one</h1>
+<h3>Add new ingredient</h3>
 
+<div class= 'form-group form form'>
 <%= form_with(model: @ingredient, local: true) do |f| %>
 
   <%= f.text_field :product_id %>
@@ -11,8 +12,9 @@
   <%= f.text_field :unit %>
   <%= f.date_field :exp_date %>
 
-  <%= f.submit "Save" %>
+  <%= f.submit "Save", class:'btn btn-primary'%><%= link_to "Return", ingredients_path, class:'btn btn-outline-danger' %>
 
 <% end %>
 
+</div>
 </br>
