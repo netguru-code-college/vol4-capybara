@@ -66,9 +66,8 @@ class IngredientsController < ApplicationController
     redirect_to ingredients_path
   end
 
-  private
-  def ingredient_params
-    params.require(:ingredient).permit(:name, :exp_date, :quantity)
+  private def ingredient_params
+    params.require(:ingredient).permit(:name, :exp_date, :quantity, :product_id, :unit)
   end
 
 end
