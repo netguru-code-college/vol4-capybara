@@ -5,9 +5,9 @@
 <% end %>
 
 
-<h1>List of Products</h1>
+<h3>List of Products</h3>
 
-
+<div class='form'>
 <%= form_with(method: :get, local: true) do |f| %>
 
   <% @products.each do |product| %>
@@ -24,8 +24,10 @@
   <% end %>
 
 
-  <%= f.submit "Send" %>
+  <%= f.submit "Send", class:'btn btn-success'%>
 <% end %>
+
+</div>
 
 
 
