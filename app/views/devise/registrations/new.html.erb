@@ -1,5 +1,6 @@
-<h2>Sign up</h2>
+<h3>Sign up</h3>
 
+<div class='form-group form'>
 <%= form_for(resource, as: resource_name, :multipart => true, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -21,6 +22,8 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  </br>
+
   <div class="field">
     <%= f.file_field :avatar do %><br />
     <%= f.file_field :avatar %><br />
@@ -29,9 +32,14 @@
 
   </div>
 
+  </br>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class:'btn btn-success' %>
   </div>
 <% end %>
+</div>
 
+<div class='group_links'>
 <%= render "devise/shared/links" %>
+</div>
