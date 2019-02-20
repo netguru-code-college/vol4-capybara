@@ -1,9 +1,16 @@
 <h1>Ingredient details</h1>
 
 
-<h3><%= @ingredient.name %></h3>
 
-<i>Last updated: <%= @ingredient.updated_at %></i>
+<b>Ingredient id:</b>     <%= @ingredient.id %>             </br>
+<b>Product_id:   </b>     <%= @ingredient.product_id %>     </br>
+<b>Product_name: </b>     <%= @ingredient.product.name %>   </br>
+<b>Exp_Date:     </b>     <%= @ingredient.exp_date %>       </br>
+<b>Quantity:     </b>     <%= @ingredient.quantity %>       </br>
+<b>Unit:         </b>     <%= @ingredient.unit %>           </br>
+
+<i><b>Last updated: </b> <%= @ingredient.updated_at %></i>
+
 
 <div>
   <%= link_to "Return", ingredients_path %>

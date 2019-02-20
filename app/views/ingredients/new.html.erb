@@ -6,8 +6,9 @@
 
 <%= form_with(model: @ingredient, local: true) do |f| %>
 
-  <%= f.text_field :name %>
+  <%= f.text_field :product_id %>
   <%= f.text_field :quantity %>
+  <%= f.text_field :unit %>
   <%= f.date_field :exp_date %>
 
   <%= f.submit "Save" %>
