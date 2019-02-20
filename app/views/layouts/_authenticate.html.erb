@@ -1,10 +1,53 @@
-<% if user_signed_in? %>
-   <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-  <%= link_to('Edit registration', edit_user_registration_path) %>
-<% else %>
-  <%= link_to('Login', new_user_session_path)  %>
-  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-  <%= link_to('Register', new_user_registration_path)  %>
-<% end %>
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <a href="/" class="navbar-wagon-brand">
+    <img src="images/logo.png" alt="food-app">
+  </a>
 
-</br>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <% if current_user && current_user.admin %>
+      <%= link_to "Add new product", new_product_path, class: 'btn btn-outline-success' %>
+      <%= link_to "Add new ingredient", new_ingredient_path, class: 'btn btn-outline-success' %>
+    <% end %>
+
+    <% if user_signed_in? %>
+
+      <!-- Profile picture with dropdown list -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <!--            <li><a href="#">Profile</a></li>-->
+            <li>
+              <%= link_to 'Edit registration', edit_user_registration_path, class: 'navbar-wagon-item navbar-wagon-link' %>
+            </li>
+            <li>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-wagon-item navbar-wagon-link' %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    <% else %>
+      <%= link_to 'Login', new_user_session_path, class: 'navbar-wagon-item navbar-wagon-link' %>
+      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: 'navbar-wagon-item navbar-wagon-link' %>
+      <%= link_to 'Register', new_user_registration_path, class: 'navbar-wagon-item navbar-wagon-link' %>
+    <% end %>
+
+  </div>
+
+  <!-- Dropdown appearing on mobile only -->
+  <!--  <div class="navbar-wagon-item hidden-md hidden-lg">-->
+  <!--    <div class="dropdown">-->
+  <!--      <i class="fas fa-bars dropdown-toggle" data-toggle="dropdown" role="button"></i>-->
+  <!--      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">-->
+  <!--        <li><a href="#">Host</a></li>-->
+  <!--        <li><a href="#">Trips</a></li>-->
+  <!--        <li><a href="#">Messagese</a></li>-->
+  <!--      </ul>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+</div>
