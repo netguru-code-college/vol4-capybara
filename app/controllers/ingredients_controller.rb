@@ -6,12 +6,14 @@ class IngredientsController < ApplicationController
     @products = Product.readonly.all
 
    #checkbox logic
-     @all_parameters = params
+    @all_parameters = params
     @selected_ingredient_names = params[:selected_ingredients] || []
+    @selected_food_category = params[:food_cat] || ""
+    @selected_diet_category = params[:diet_cat] || ""
 
      @api_response_hash = {}
      if !@selected_ingredient_names.empty?
-       @api_response_hash = RecipeApiRequest.send_request(@selected_ingredient_names)
+       @api_response_hash = RecipeApiRequest.send_request(@selected_ingredient_names, @selected_food_category, @selected_diet_category)
      end
   end
 

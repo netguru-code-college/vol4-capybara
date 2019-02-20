@@ -10,7 +10,7 @@
 </br></br>
 
 
-<%= form_with(method: :get, local: true) do |f| %>
+<%= bootstrap_form_with(method: :get, local: true) do |f| %>
 
   <% @ingredients.each do |ingredient| %>
     <div>
@@ -24,11 +24,14 @@
                       {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
                       ingredient.product.name,
                       nil ) %>
+      
+      
     </div>
   <% end %>
 
-
-  <%= f.submit "Send" %>
+      <%= f.select :food_cat, Recipe.food_cats.map { |key, value| [key.humanize, key] } %>
+      <%= f.select :diet_cat, Recipe.diet_cats.map { |key, value| [key.humanize, key] } %>
+  <%= f.primary "Send" %>
 <% end %>
 
 
