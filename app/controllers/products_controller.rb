@@ -3,15 +3,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.readonly.all
-
-    # checkbox logic
-    @all_parameters = params
-    @selected_product_names = params[:selected_products] || []
-
-    @api_response_hash = {}
-    if !@selected_product_names.empty?
-      @api_response_hash = RecipeApiRequest.send_request(@selected_product_names)
-    end
   end
 
   def show
