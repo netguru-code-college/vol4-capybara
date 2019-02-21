@@ -11,6 +11,7 @@ class IngredientsController < ApplicationController
     @selected_ingredient_names = params[:selected_ingredients] || []
     @selected_food_category = params[:food_cat] || ""
     @selected_diet_category = params[:diet_cat] || ""
+    @insta_hash = params[:Diet_category] || ""
 
      @api_response_hash = {}
      if !@selected_ingredient_names.empty?

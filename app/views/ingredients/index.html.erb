@@ -92,6 +92,11 @@
   <% end %>
 </div>
 
+    <% if @insta_hash.present? %>
+<div class="instagram">
+    <%= link_to "Explore #{@insta_hash} food on Instagram!", "https://www.instagram.com/explore/tags/#{@insta_hash}/", class:'btn btn-info', target: "_blank" %>
+</div>
+    <% end %>
 
 
 
