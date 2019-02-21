@@ -1,8 +1,9 @@
 </br>
 <div class="container">
-  <%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
+
 
   <% if current_user %>
+    <%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
     <%= link_to "Add new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
   <% end %>
 
