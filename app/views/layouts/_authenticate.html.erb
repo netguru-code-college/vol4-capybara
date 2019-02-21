@@ -9,7 +9,6 @@
 
     <% if current_user && current_user.admin %>
       <%= link_to "Add new product", new_product_path, class: 'btn btn-outline-success' %>
-      <%= link_to "Add new ingredient", new_ingredient_path, class: 'btn btn-outline-success' %>
     <% end %>
 
     <% if user_signed_in? && current_user.avatar.url.present? %>

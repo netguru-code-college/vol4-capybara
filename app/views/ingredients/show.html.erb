@@ -13,9 +13,9 @@
 
 
 <div>
-  <%= link_to "Return", ingredients_path %>
+  <%= link_to "Return", ingredients_path, class:'btn btn-outline-secondary' %>
 
-  <%= link_to "Edit", edit_ingredient_path(@ingredient) %>
-  <%= link_to "Delete", ingredient_path(@ingredient), method: :delete, data: { confirm: 'Are you sure?'} %>
+  <%= link_to "Edit", edit_ingredient_path(@ingredient), class:'btn btn-warning' %>
+  <%= link_to "Delete", ingredient_path(@ingredient), method: :delete, data: { confirm: 'Are you sure?'}, class:'btn btn-danger' %>
 
 </div>
