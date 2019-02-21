@@ -1,20 +1,26 @@
 </br></br>
-<%= link_to "Return", ingredient_path(@ingredient) %>
-</br></br>
 
 <h3>Edit ingredient</h3>
 
-<%= form_with(model: @ingredient, local: true) do |f| %>
+<div class= 'form-group form'>
+  <%= form_with(model: @ingredient, local: true) do |f| %>
 
-  <%= f.text_field :product_id %>
-  <%= f.text_field :quantity %>
-  <%= f.text_field :unit %>
-  <%= f.date_field :exp_date %>
+    <%= f.label :product %>
+    <%= f.select(:product_id, Product.all.sort_by{|e| e.name}.collect {|p| [ p.name, p.id ] }) %>
 
-  <%= f.submit "Save" %>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, min: 1 %>
 
-<% end %>
+    <%= f.label :unit %>
+    <%= f.select :unit, Ingredient.units.map { |key, value| [key.humanize, key] } %>
 
+    <%= f.label :expiration %>
+    <%= f.date_field :exp_date %>
 
+    </br></br></br>
 
-</br>
+    <%= link_to "Return", ingredient_path(@ingredient), class:'btn btn-outline-secondary' %>
+    <%= f.submit "Save", class:'btn btn-primary'%>
+
+  <% end %>
+</div>

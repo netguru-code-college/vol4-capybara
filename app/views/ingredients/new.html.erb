@@ -1,27 +1,29 @@
 </br></br>
 
-</br></br>
-
 <h3>Add new ingredient</h3>
+</br>
 
 <div class= 'form-group form'>
-<%= form_with(model: @ingredient, local: true) do |f| %>
+  <%= form_with(model: @ingredient, local: true) do |f| %>
 
-  <%= f.label :product %>
-  <%= f.select(:product_id, Product.all.collect {|p| [ p.name, p.id ] }) %>
+    <%= f.label :product %>
+    <%= f.select(:product_id, Product.all.sort_by{|e| e.name}.collect {|p| [ p.name, p.id ] }) %>
 
-  <%= f.label :quantity %>
-  <%= f.number_field :quantity, min: 1 %>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, min: 1 %>
 
-  <%= f.label :unit %>
-  <%= f.select :unit, Ingredient.units.map { |key, value| [key.humanize, key] } %>
+    <%= f.label :unit %>
+    <%= f.select :unit, Ingredient.units.map { |key, value| [key.humanize, key] } %>
 
-  <%= f.label :expiration %>
-  <%= f.date_field :exp_date %>
+    <%= f.label :expiration %>
+    <%= f.date_field :exp_date %>
 
-  <%= f.submit "Save", class:'btn btn-primary'%><%= link_to "Return", ingredients_path, class:'btn btn-outline-danger' %>
+    </br></br></br>
 
-<% end %>
+    <%= link_to "Return", ingredients_path, class:'btn btn-outline-secondary' %>
+    <%= f.submit "Save", class:'btn btn-primary'%>
 
+  <% end %>
 </div>
-</br>
+
+

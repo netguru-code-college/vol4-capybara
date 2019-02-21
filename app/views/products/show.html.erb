@@ -7,12 +7,12 @@
 
 
 <div>
-  <%= link_to "Return", products_path %>
+  <%= link_to "Return", products_path, class:'btn btn-outline-secondary' %>
 
 
   <% if current_user && current_user.admin %>
-    <%= link_to "Edit", edit_product_path(@product) %>
-    <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: 'Are you sure?'} %>
+    <%= link_to "Edit", edit_product_path(@product), class:'btn btn-warning' %>
+    <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: 'Are you sure?'}, class:'btn btn-danger' %>
   <% end %>
 </div>
 

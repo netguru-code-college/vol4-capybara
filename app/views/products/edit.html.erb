@@ -1,9 +1,12 @@
+</br>
+
+<%= link_to "All products", products_path, class: "btn btn-outline-primary" %>
+
 <h1>Edit product</h1>
 
+<div class='form-group form'>
+  <%= render 'form' %>
+</div>
 
-<%= render 'form' %>
-
-
-</br></br>
-<%= link_to "Return", product_path(@product) %>
+<%= link_to "Return", product_path(@product), class:'btn btn-outline-secondary' %>
 

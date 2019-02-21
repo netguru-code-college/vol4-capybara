@@ -1,3 +1,15 @@
 // Place all the styles related to the Ingredients controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.api-response{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  grid-gap: 10px;
+  padding: 10px;
+  //background-color: beige;
+}
+
+.one-ingredient-style{
+  font-size: 20px;
+}

@@ -1,15 +1,26 @@
-<%= link_to "All products", products_path %>
+</br>
+
+<%= link_to "All products", products_path, class: "btn btn-outline-primary" %>
 
 <% if current_user && current_user.admin %>
-  <%= link_to "Add new product", new_product_path %>
+  <%= link_to "Add new product", new_product_path, class: "btn btn-outline-primary" %>
 <% end %>
+
+</br></br></br>
 
 <h1>List of Products:</h1>
 
-<% @products.each do |product| %>
-  <div>
-    <a href="<%= product_path(product) %>">
-      <b><h3><%= product.name %></h3></b>
-    </a>
-  </div>
-<% end %>
+</br></br>
+
+<div class="list-of-products-style">
+
+  <% @products.sort_by{|e| e.name}.each_with_index do |product, index| %>
+    <div>
+      <a href="<%= product_path(product) %>">
+        <h3><%= index+1 %>. <%= product.name %></h3>
+      </a>
+    </div>
+  <% end %>
+
+</div>
+
