@@ -8,3 +8,18 @@
   grid-gap: 10px;
   padding: 10px;
 }
+
+.list-of-products-style h3 {
+  border: 1px solid #007bff;;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.list-of-products-style h3:hover {
+  background-color: #007bff;;
+  color: white;
+}
+
+.list-of-products-style a {
+  text-decoration: none;
+}

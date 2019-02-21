@@ -5,8 +5,11 @@
     <h1>Hungry capybara</h1>
     <p>Find a recipe <br> that suits Your needs!</p>
 
+    <% if current_user && current_user.admin %>
+      <%= link_to "Available Products", products_path, class:"btn btn-primary btn-lg" %>
+    <% end %>
+
     <% if current_user %>
-      <%= link_to "Add a new product", products_path, class:"btn btn-primary btn-lg" %>
       <%= link_to "Check your fridge", ingredients_path, class:"btn btn-primary btn-lg" %>
     <% end %>
 

@@ -1,50 +1,95 @@
 </br>
-
-<%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
-
-<% if current_user && current_user.admin %>
-  <%= link_to "Add new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
-<% end %>
-
-</br></br></br>
-
-<div class="display-ingredients">
-
-  <%= form_with(method: :get, local: true) do |f| %>
-
-    <%= f.select :Food_category, Recipe.food_cats.map { |key, value| [key.humanize, key] }, class: "form-control" %>
-    <%= f.select :Diet_category, Recipe.diet_cats.map { |key, value| [key.humanize, key] } %>
-
-    </br></br>
-
-    <% @ingredients.each do |ingredient| %>
+<div class="container">
 
 
-      <div class="one-ingredient-style">
-        <div class="row">
-          <a href="<%= ingredient_path(ingredient) %>">
-            <div class="col-md-3"> <%= ingredient.product.name %> </div>
-          </a>
-          <div class="col-md-2"> <%= ingredient.exp_date %> </div>
-          <div class="col-md-1"> <%= ingredient.quantity %> </div>
-          <div class="col-md-1"> <%= ingredient.unit %> </div>
-
-          <div class="col-md-1">
-            <%= f.check_box(:selected_ingredients,
-                            {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
-                            ingredient.product.name,
-                            nil ) %> </div>
-        </div>
-      </div>
-
-
-    <% end %>
-
-    </br></br>
-
-    <%= f.submit "Send", class: "btn btn-outline-success" %>
+  <% if current_user %>
+    <%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
+    <%= link_to "Add new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
   <% end %>
 
+  </br></br></br>
+
+  <div class="display-ingredients">
+
+    <%= form_with(method: :get, local: true) do |f| %>
+
+      <%= f.select :Food_category, Recipe.food_cats.map { |key, value| [key.humanize, key] }, class: "form-control" %>
+      <%= f.select :Diet_category, Recipe.diet_cats.map { |key, value| [key.humanize, key] } %>
+
+      </br></br>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Expiration date</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Checkbox</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @ingredients.each_with_index do |ingredient, index| %>
+            <tr>
+              <th scope="row"><%= index+1 %></th>
+              <td>
+                <a href="<%= ingredient_path(ingredient) %>">
+                  <%= ingredient.product.name %>
+                </a>
+              </td>
+              <td><%= ingredient.exp_date %></td>
+              <td><%= ingredient.quantity %></td>
+              <td><%= ingredient.unit %></td>
+              <td><%= f.check_box(:selected_ingredients,
+                                  {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
+                                  ingredient.product.name,
+                                  nil ) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      </br></br>
+
+      <%= f.submit "Send", class: "btn btn-outline-success" %>
+    <% end %>
+
+  </div>
+<br/><br/>
+<!-- test parameters url 
+  </br></br>
+  <%= @all_parameters %>
+  </br></br>
+-->
+
+  <!--display api response-->
+
+  <% if !@api_response_hash.empty? %>
+
+    <h2>Recommended Recipes</h2>
+
+    <div class="api-response">
+      <% @api_response_hash['results'].each do |hash| %>
+
+        <%# hash['title'] %>
+        <%# hash['href'] %>
+        <%# hash['ingredients'] %>
+        <%# hash['thumbnail'] %>
+
+        <div class="card" style="width: 288px;">
+          <img class="card-img-top" src="<%= hash['thumbnail'] %>" alt="Card image cap" height="200" width="200">
+          <div class="card-body">
+            <h5 class="card-title"><%= hash['title'] %></h5>
+            <p class="card-text"><b>All ingredients:</b> <%= hash['ingredients'] %></p>
+            <a href="<%= hash['href'] %>" class="btn btn-primary">More Details</a>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+
+  <% end %>
 </div>
 
     <% if @insta_hash.present? %>
@@ -52,42 +97,6 @@
     <%= link_to "Explore #{@insta_hash} food on Instagram!", "https://www.instagram.com/explore/tags/#{@insta_hash}/", class:'btn btn-info', target: "_blank" %>
 </div>
     <% end %>
-
-
-</br></br>
-<%= @all_parameters %>
-</br></br>
-
-
-<!--display api response-->
-
-<% if !@api_response_hash.empty? %>
-
-  <h2>Recommended Recipes</h2>
-
-  <div class="api-response">
-    <% @api_response_hash['results'].each do |hash| %>
-
-      <%# hash['title'] %>
-      <%# hash['href'] %>
-      <%# hash['ingredients'] %>
-      <%# hash['thumbnail'] %>
-
-      <div class="card" style="width: 288px;">
-        <img class="card-img-top" src="<%= hash['thumbnail'] %>" alt="Card image cap" height="200" width="200">
-        <div class="card-body">
-          <h5 class="card-title"><%= hash['title'] %></h5>
-          <p class="card-text"><b>All ingredients:</b> <%= hash['ingredients'] %></p>
-          <a href="<%= hash['href'] %>" class="btn btn-primary">More Details</a>
-        </div>
-      </div>
-
-    <% end %>
-  </div>
-
-<% end %>
-
-
 
 
 
