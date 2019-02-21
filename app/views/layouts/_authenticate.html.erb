@@ -8,7 +8,7 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <% if current_user && current_user.admin %>
-      <%= link_to "Add new product", new_product_path, class: "btn btn-outline-success" %>
+      <%= link_to "Add new product", new_product_path, class: "btn btn-danger" %>
     <% end %>
 
     <% if user_signed_in? && current_user.avatar.url.present? %>
