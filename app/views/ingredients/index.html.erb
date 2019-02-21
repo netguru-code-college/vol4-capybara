@@ -4,10 +4,15 @@
 
   <% if current_user %>
     <%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
-    <%= link_to "Add new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
+    <%= link_to "Add a new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
+
   <% end %>
 
-  </br></br></br>
+  </br></br>
+    <div class="choose-category">
+      <p>What would you like to eat?</p>
+    </div>
+  </br>
 
   <div class="display-ingredients">
 
@@ -52,12 +57,20 @@
 
       </br></br>
 
-      <%= f.submit "Send", class: "btn btn-outline-success" %>
+      <%= f.submit "Generate a recipe", class: "btn btn-outline-success" %>
     <% end %>
 
   </div>
 <br/><br/>
-<!-- test parameters url 
+
+ <% if @insta_hash.present? %>
+    <div class="instagram">
+      <%= link_to "Explore #{@insta_hash} food on Instagram!", "https://www.instagram.com/explore/tags/#{@insta_hash}/", class:'btn btn-info', target: "_blank" %>
+    </div>
+    <% end %>
+
+    <br/><br/>
+<!-- test parameters url
   </br></br>
   <%= @all_parameters %>
   </br></br>
@@ -92,11 +105,6 @@
   <% end %>
 </div>
 
-    <% if @insta_hash.present? %>
-<div class="instagram">
-    <%= link_to "Explore #{@insta_hash} food on Instagram!", "https://www.instagram.com/explore/tags/#{@insta_hash}/", class:'btn btn-info', target: "_blank" %>
-</div>
-    <% end %>
 
 
 
