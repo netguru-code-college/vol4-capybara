@@ -2,43 +2,9 @@
 <div class="container">
   <%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
 
-
-<%= link_to "My ingredients", ingredients_path, class: "btn btn-outline-primary" %>
-
-<% if current_user %>
-  <%= link_to "Add new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
-<% end %>
-
-</br></br></br>
-
-<div class="display-ingredients">
-
-  <%= form_with(method: :get, local: true) do |f| %>
-
-    <%= f.select :Food_category, Recipe.food_cats.map { |key, value| [key.humanize, key] }, class: "form-control" %>
-    <%= f.select :Diet_category, Recipe.diet_cats.map { |key, value| [key.humanize, key] } %>
-
-    </br></br>
-
-    <% @ingredients.each do |ingredient| %>
-
-
-      <div class="one-ingredient-style">
-        <div class="row">
-          <a href="<%= ingredient_path(ingredient) %>">
-            <div class="col-md-3"> <%= ingredient.product.name %> </div>
-          </a>
-          <div class="col-md-2"> <%= ingredient.exp_date %> </div>
-          <div class="col-md-1"> <%= ingredient.quantity %> </div>
-          <div class="col-md-1"> <%= ingredient.unit %> </div>
-
-          <div class="col-md-1">
-            <%= f.check_box(:selected_ingredients,
-                            {multiple: true, checked: @selected_ingredient_names.include?(ingredient.product.name)},
-                            ingredient.product.name,
-                            nil ) %> </div>
-        </div>
-      </div>
+  <% if current_user && current_user.admin %>
+    <%= link_to "Add new ingredient", new_ingredient_path, class: "btn btn-outline-primary" %>
+  <% end %>
 
   </br></br></br>
 
